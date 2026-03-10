@@ -18,10 +18,10 @@ metrics
 
 ```
 ## Implementation
-The modules and dependencies are are modeled as a directed graph.  
-A → B means "A depends on B"
+The modules and dependencies are are modeled as a directed graph:  
+A → B (means A depends on B)
 
-For efficient traversal the prototype stores reverse dependencies:  
+For efficient traversal, the prototype stores reverse dependencies:  
 B → A
 
 
@@ -37,7 +37,7 @@ All modules that depend on it (directly or indirectly) must also be rebuilt.
 
 This produces a list of affected modules and explanations for why each module is rebuilt.
 
-Example output when "main" is changed:  
+Example output when module "main" is changed:  
 ```
 Affected modules:  
 - app
@@ -45,7 +45,8 @@ Affected modules:
 - ui
 - auth
 - service
-- main  
+- main
+
 Rebuild reasons: 
 - main is changed directly
 - ui depends on main
@@ -72,6 +73,8 @@ Demonstration via example module structure.
 - Use `LinkedHashMap` and `LinkedHashSet` to preserve deterministic output order.
 - Add support for visualizing rebuild cascades as a dependency tree.
 - Integrate build status tracking such as:
-[compiling] service
-[waiting]       app
+```
+[compiling] service  
+[waiting]       app  
 [skipped]  database
+```
