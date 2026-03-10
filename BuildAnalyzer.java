@@ -67,7 +67,7 @@ public class BuildAnalyzer {
             String reason = entry.getValue();
 
             if (reason.equals("changed directly")) {
-                System.out.println("- " + module + "is " + reason);
+                System.out.println("- " + module + " is " + reason);
             } else {
                 System.out.println("- " + module + " depends on " + reason);
             }

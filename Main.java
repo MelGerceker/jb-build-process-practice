@@ -6,19 +6,24 @@ public class Main {
 
         ModuleGraph graph = new ModuleGraph();
 
-        graph.addDependency("app", "ui"); // ex. app depends on ui
-        graph.addDependency("app", "service");
-        graph.addDependency("ui", "shared");
+        // Core dependencies
+        graph.addDependency("ui", "main");
+        graph.addDependency("auth", "main");
+
+        // second layer dependencies
         graph.addDependency("service", "auth");
-        graph.addDependency("service", "database");
-        graph.addDependency("auth", "shared");
-        graph.addDependency("database", "logging");
+        graph.addDependency("app", "ui");
+
+        // third layer dependencies
         graph.addDependency("tests", "service");
-        graph.addDependency("tests", "shared");
+
+        // separate branch
+        graph.addDependency("analytics", "metrics");
+
 
         BuildAnalyzer build = new BuildAnalyzer(graph);
 
-        String changedModuel = "shared";
+        String changedModuel = "main";
 
         Set<String> affectedModules = build.findAffected(changedModuel);
         build.printRebuildReasons(affectedModules);
